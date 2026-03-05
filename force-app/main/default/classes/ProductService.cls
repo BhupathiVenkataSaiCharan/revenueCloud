@@ -16,8 +16,12 @@
 
 public class ProductService {
 
-	public static void doSomething() {
-		// Your logic here
-	}
+	public static void onBeforeInsert(List<Product2> newList) {
+        ProductHelper.checkDuplicateProducts(newList);
+    }
+
+    public static void onAfterInsert(List<Product2> newList) {
+        ProductHelper.processNewProducts(newList);
+    }
 
 }

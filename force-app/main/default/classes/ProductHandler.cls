@@ -25,10 +25,10 @@ public class ProductHandler {
 
 		switch on Trigger.operationType{
 			WHEN BEFORE_INSERT{
-
+				ProductService.onBeforeInsert(newList);
 			}
 			WHEN AFTER_INSERT{
-
+				ProductService.onAfterInsert(newList);
 			}
 			WHEN BEFORE_UPDATE{
 
