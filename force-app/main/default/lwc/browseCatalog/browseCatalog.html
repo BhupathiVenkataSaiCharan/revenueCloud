@@ -1,0 +1,55 @@
+<template>
+    <lightning-card title="All Catalogs">
+        <template if:false={isLoading}>
+            <template if:false={hasPricebook}>
+                <p>No Pricebook associated with this Opportunity. Please associate a Pricebook to view Catalogs.</p>
+            </template>
+            <template if:true={isCatalogScreen}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={catalogs}
+                    columns={columns}
+                    max-row-selection="1"
+                    selected-rows={selectedRows}
+                    onrowselection={handleRowSelection}>
+                </lightning-datatable>
+                <lightning-button variant="brand" label="Next" onclick={handleSelectCatalog} class="slds-m-top_medium" disabled = {isHandleSelectCatalogDisabled}></lightning-button>
+            </template>
+            <template if:true={isCategoryScreen}>
+                <p>Selected Catalog Id - {selectedCatalogId}</p>
+                <div class="menu-container">
+
+                    <!-- LEFT 40% -->
+                    <div class="left-menu">
+
+                        <template for:each={categories} for:item="cat">
+                            <div
+                                key={cat.Id}
+                                class="menu-item"
+                                data-id={cat.Id}
+                                onclick={handleCategoryClick}>
+                                {cat.Name}
+                            </div>
+                        </template>
+                    </div>
+
+
+                    <!-- RIGHT 60% -->
+                    <div class="right-menu">
+                        <template if:true={subCategories}>
+                            <template for:each={subCategories} for:item="sub">
+                                <div key={sub.Id} class="sub-item">
+                                    {sub.Name}
+                                </div>
+                            </template>
+                        </template>
+                    </div>
+                </div>
+                <lightning-button variant="brand" label="Back" onclick={handleBackToCatalog} class="slds-m-top_medium"></lightning-button>
+                <lightning-button variant="brand" label="Next" onclick={handleSelectProduct} class="slds-m-top_medium"></lightning-button>
+            </template>
+        </template>
+        <c-custom-spinner is-loading={isLoading} size="medium"></c-custom-spinner>
+
+    </lightning-card>    
+</template>

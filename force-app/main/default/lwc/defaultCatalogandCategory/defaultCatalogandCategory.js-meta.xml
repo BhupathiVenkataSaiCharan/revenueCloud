@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+	<isExposed>true</isExposed>
+	<apiVersion>66.0</apiVersion>
+	<description>Used to Choose default fields from Product for Catalog and Category in Revenue Cloud Structure</description>
+	<targets>
+		<target>lightning__HomePage</target>
+	</targets>
+</LightningComponentBundle>

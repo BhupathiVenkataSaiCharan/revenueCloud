@@ -1,0 +1,34 @@
+<template>
+    <div class="search-container">
+        <div class="search-wrapper">
+            <input
+                type="text"
+                class="search-input"
+                placeholder="Search product fields..."
+                value={searchValue}
+                oninput={handleSearch}
+            />
+            <template if:true={searchValue}>
+                <button class="clear-btn" onclick={handleClear} title="Clear search">✕</button>
+            </template>
+            <button class="submit-btn" onclick={handleSubmit}>Search</button>
+        </div>
+
+        <template if:true={showDropdown}>
+            <div class="dropdown">
+                <template for:each={filteredFields} for:item="field">
+                    <div
+                        key={field.apiName}
+                        class="field-option"
+                        data-label={field.label}
+                        data-api={field.apiName}
+                        onclick={handleSelect}
+                    >
+                        <span class="label">{field.label}</span>
+                        <span class="api">{field.apiName}</span>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

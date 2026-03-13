@@ -1,0 +1,21 @@
+<!-- pricebookSelector.html -->
+<!-- 
+    Component: pricebookSelector
+    Purpose  : Checks if a Pricebook is associated with the Opportunity.
+               Fires an event with the pricebookId if found, or shows a message if not.
+    Events   : pricebookloaded  → { pricebookId: String | null }
+-->
+<template>
+    <template if:true={isLoading}>
+        <c-custom-spinner is-loading={isLoading} size="medium"></c-custom-spinner>
+    </template>
+ 
+    <template if:false={isLoading}>
+        <template if:false={hasPricebook}>
+            <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">
+                <lightning-icon icon-name="utility:warning" alternative-text="Warning" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                <h2>No Pricebook associated with this Opportunity. Please associate a Pricebook to view Catalogs.</h2>
+            </div>
+        </template>
+    </template>
+</template>
